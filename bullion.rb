@@ -36,8 +36,8 @@ class Bullion < Oxidized::Model
     cfg += add_comment 'IP Routes'
     cfg += cmd 'ip route'
 
-#    cfg += add_comment 'SNMP settings'
-#    cfg += cmd 'cat /etc/snmp/snmpd.conf'
+    cfg += add_comment 'OVIRT-HOST-ENGINE-SETUP - ANSWER FILE'
+    cfg += cmd 'cat /etc/ovirt-hosted-engine/answers.conf'
 
     cfg += add_comment 'MOTD'
     cfg += cmd 'cat /etc/motd'
