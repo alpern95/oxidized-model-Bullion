@@ -24,6 +24,9 @@ class Bullion < Oxidized::Model
     cfg += add_comment 'THE INTERFACES'
     cfg += cmd 'grep -r "" /etc/sysconfig/network-scripts/ifcfg-* | cut -d "/" -f 4-'
 
+    cfg += add_comment 'THE NETWORK VOLUMES'
+    cfg += cmd 'df -h | grep  --color=never vol'
+    
     cfg += add_comment 'RESOLV.CONF'
     cfg += cmd 'cat /etc/resolv.conf'
 
@@ -54,6 +57,12 @@ class Bullion < Oxidized::Model
     cfg += add_comment 'VERSION'
     cfg += cmd 'cat /etc/redhat-release'
 
+    cfg += add_comment 'NUMBER OF CPU'
+    cfg += cmd 'cat /proc/cpuinfo | grep processor | wc -l'
+
+    cfg += add_comment 'MEMORY'
+    cfg += cmd 'cat /proc/meminfo | grep --color=never Mem'
+    
     cfg += add_comment 'KERNEL INFORMATION'
     cfg += add_comment '## kernel-release'
     cfg += cmd 'uname -r'
