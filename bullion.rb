@@ -61,7 +61,7 @@ class Bullion < Oxidized::Model
     cfg += cmd 'cat /proc/cpuinfo | grep processor | wc -l'
 
     cfg += add_comment 'MEMORY'
-    cfg += cmd 'cat /proc/meminfo | grep --color=never Mem'
+    cfg += cmd 'cat /proc/meminfo | grep --color=never MemTotal'
     
     cfg += add_comment 'KERNEL INFORMATION'
     cfg += add_comment '## kernel-release'
