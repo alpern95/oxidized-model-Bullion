@@ -25,7 +25,7 @@ class Bullion < Oxidized::Model
     cfg += cmd 'grep -r "" /etc/sysconfig/network-scripts/ifcfg-* | cut -d "/" -f 4-'
 
     cfg += add_comment 'THE NETWORK VOLUMES'
-    cfg += cmd 'df -h | grep  --color=never vol'
+    cfg += cmd 'cat /proc/mounts | grep --color=never vol'
     
     cfg += add_comment 'RESOLV.CONF'
     cfg += cmd 'cat /etc/resolv.conf'
