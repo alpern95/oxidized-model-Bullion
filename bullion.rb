@@ -69,6 +69,19 @@ class Bullion < Oxidized::Model
     cfg += add_comment '## machine'
     cfg += cmd 'uname -m'
 
+    cfg += add_comment 'BOOT TYPE'
+    boot = cmd 'dmesg | grep "EFI v"'
+    unless boot.include? 'EFI'
+	    boot = cmd 'cat /var/log/dmesg.old | grep -q "EFI v"'
+	    unless boot.include? 'EFI'
+	      cfg += cmd 'echo "Not EFI"'
+	    else
+	      cfg += cmd 'echo "Is EFI"'
+	    end
+    else
+	    cfg += cmd 'echo "Is EFI"'
+    end
+    
     cfg += add_comment 'LISTE PAQUETS INSTALLES'
     cfg += cmd "rpm -qa --qf '%{NAME} %{VERSION} %{ARCH} rpm %{SUMMARY}\n' | sort"
 
